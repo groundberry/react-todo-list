@@ -44,7 +44,11 @@ class App extends Component {
         <header className="App__header">
           <h1 className="App__title">To-Do list</h1>
         </header>
-        <Form task={this.state.task} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+        <Form
+          task={this.state.task}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
       </div>
     );
   }
