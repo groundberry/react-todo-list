@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import Tasks from './Tasks';
 import './App.css';
 
 class App extends Component {
@@ -49,6 +50,10 @@ class App extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
+        {this.state.tasks.length !== 0
+          ? <Tasks tasks={this.state.tasks} />
+          : ''
+        }
       </div>
     );
   }
