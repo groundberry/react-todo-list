@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modal from './Modal';
 import Form from './Form';
 import Tasks from './Tasks';
 import './App.css';
@@ -13,10 +14,12 @@ class App extends Component {
         completed: false,
       },
       tasks: [],
+      isModalVisible: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   handleChange(changes) {
@@ -39,19 +42,34 @@ class App extends Component {
     }));
   }
 
+  toggleModal() {
+    this.setState(prevState => ({
+      isModalVisible: !prevState.isModalVisible,
+    }));
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App__header">
           <h1 className="App__title">To-Do list</h1>
         </header>
-        <Form
-          task={this.state.task}
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-        />
+        {this.state.isModalVisible
+          ? <Modal
+            task={this.state.task}
+            onClose={this.toggleModal}
+          />
+          : <Form
+            task={this.state.task}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+          />
+        }
         {this.state.tasks.length !== 0
-          ? <Tasks tasks={this.state.tasks} />
+          ? <Tasks
+            tasks={this.state.tasks}
+            onClick={this.toggleModal}
+          />
           : ''
         }
       </div>

@@ -14,7 +14,11 @@ const sampleTasks = [
 
 describe('<Tasks />', () => {
   it('renders a list of tasks', () => {
-    const wrapper = shallow(<Tasks tasks={sampleTasks} />);
+    const onClickSpy = jest.fn();
+    const wrapper = shallow(<Tasks
+      tasks={sampleTasks}
+      onClick={onClickSpy}
+    />);
     expect(wrapper.find(Task)).toHaveLength(2);
   });
 });

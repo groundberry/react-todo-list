@@ -11,6 +11,7 @@ function Tasks(props) {
           name={task.name}
           deadline={task.deadline}
           completed={task.completed}
+          onClick={props.onClick}
         />
       ))}
     </ul>
@@ -25,6 +26,7 @@ Tasks.propTypes = {
     deadline: PropTypes.string,
     completed: PropTypes.bool,
   }).isRequired),
+  onClick: PropTypes.func.isRequired,
 };
 
 Tasks.defaultProps = {
