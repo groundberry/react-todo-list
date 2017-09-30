@@ -1,10 +1,6 @@
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, { shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Task from './Task';
-
-Enzyme.configure({ adapter: new Adapter() });
-
 
 describe('<Task />', () => {
   it('shows the name of the task', () => {
