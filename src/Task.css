@@ -1,8 +1,46 @@
-.Task__button {
+.Task {
+  color: inherit;
+  text-decoration: none;
+}
+
+.Task__name {
+  display: inline-block;
+  width: 50%;
+}
+
+.Task__name_button {
   background-color: #fff;
   border-color: #fff;
   border-style: none;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 1em;
+  padding: 0;
+  text-align: left;
   text-decoration: underline;
+}
+
+.Task__name_button:hover {
+  color: #76ac26;
+}
+
+.Task__name_button:visited {
+  color: #76ac26;
+  margin-left: 15px;
+}
+
+.Task__deadline {
+  color: #d3d3d3;
+  display: inline-block;
+  width: 25%;
+}
+
+.Task__deadline.is-due {
+  color: #cc0000;
+}
+
+.Task__status {
+  color: #76ac26;
+  display: inline-block;
+  text-align: right;
+  width: 25%;
 }

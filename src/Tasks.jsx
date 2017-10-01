@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Task from './Task';
+import './Tasks.css';
 
 function Tasks(props) {
   return (
-    <ul>
+    <ul className="Tasks__container">
       {props.tasks.map((task, index) => (
         <Task
           key={index}

@@ -18,20 +18,32 @@ class Task extends Component {
 
     return (
       <li className="Task">
-        <button
-          className="Task__button"
-          onClick={this.handleClick}
+        <div
+          className="Task__name"
         >
-          {name}
-        </button>
-        {deadline == null
-          ? ''
-          : deadline.toString()
-        }
-        {completed
-          ? 'Completed'
-          : 'Pending'
-        }
+          <button
+            className="Task__name_button"
+            onClick={this.handleClick}
+          >
+            {name}
+          </button>
+        </div>
+        <div
+          className="Task__deadline"
+        >
+          {deadline == null
+            ? ''
+            : deadline.toString()
+          }
+        </div>
+        <div
+          className="Task__status"
+        >
+          {completed
+            ? 'Completed'
+            : 'Pending'
+          }
+        </div>
       </li>
     );
   }

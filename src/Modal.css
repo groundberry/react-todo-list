@@ -10,6 +10,8 @@
 }
 
 .Modal__body {
+  color: #fff;
   flex: 8;
+  margin-top: 150px;
   position: relative;
 }

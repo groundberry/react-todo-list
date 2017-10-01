@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 class Form extends Component {
   constructor() {
@@ -38,28 +39,45 @@ class Form extends Component {
     const { task } = this.props;
 
     return (
-      <form>
-        <label>
-          Name:
+      <form
+        className="Form__container"
+      >
+        <label
+          className="Form__label_container"
+        >
+          <h2 className="Form__label">
+            Name:
+          </h2>
           <input
+            className="Form__input"
             name="name"
             type="text"
             value={task.name}
             onChange={this.handleNameChange}
           />
         </label>
-        <label>
-          Deadline:
+        <label
+          className="Form__label_container"
+        >
+          <h2 className="Form__label">
+            Deadline:
+          </h2>
           <input
+            className="Form__input"
             name="deadline"
             type="date"
             value={task.deadline}
             onChange={this.handleDeadlineChange}
           />
         </label>
-        <label>
-          Completed:
+        <label
+          className="Form__label_container"
+        >
+          <h2 className="Form__label Form__label_inline">
+            Completed:
+          </h2>
           <input
+            className="Form__input Form__checkbox"
             name="completed"
             type="checkbox"
             checked={task.completed}
@@ -67,6 +85,7 @@ class Form extends Component {
           />
         </label>
         <input
+          className="Form__button"
           type="submit"
           onClick={this.handleSubmit}
         />

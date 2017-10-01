@@ -1,0 +1,49 @@
+.Form__container {
+  margin: 30px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.Form__label_container {
+  display: block;
+  text-align: left;
+}
+
+.Form__label {
+  font-size: inherit;
+}
+
+.Form__label_inline {
+  display: inline-block;
+}
+
+.Form__input {
+  border: thin solid #76ac26;
+  display: block;
+  font-size: inherit;
+  padding: 10px;
+  width: 100%;
+}
+
+.Form__checkbox {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  width: auto;
+}
+
+.Form__button {
+  background-color: #76ac26;
+  border: thin solid transparent;
+  color: #fff;
+  font-size: inherit;
+  text-decoration: none;
+  margin-top: 10px;
+  padding: 10px 25px;
+}
+
+.Form__button:hover {
+  background-color: #fff;
+  border-color: #76ac26;
+  color: #76ac26;
+}
