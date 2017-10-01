@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Form from './Form';
 import './Modal.css';
 
 const Modal = (props) => {
-  const { task, onSave } = props;
+  const { task, onChange, onSubmit } = props;
 
   return (
     <div className="Modal__backdrop">
       <div className="Modal__body">
-        {task.name}
-      </div>
-      <div className="Modal__footer">
-        <button
-          className="Modal__save_button"
-          onClick={onSave}
-        >
-          Save
-        </button>
+        <Form
+          task={task}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
       </div>
     </div>
   );
@@ -25,10 +22,11 @@ const Modal = (props) => {
 Modal.propTypes = {
   task: PropTypes.shape({
     name: PropTypes.string,
-    deadline: PropTypes.date,
+    deadline: PropTypes.string,
     completed: PropTypes.bool,
-  }),
-  onSave: PropTypes.func.isRequired,
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 Modal.defaultProps = {

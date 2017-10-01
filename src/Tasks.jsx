@@ -8,6 +8,7 @@ function Tasks(props) {
       {props.tasks.map((task, index) => (
         <Task
           key={index}
+          index={index}
           name={task.name}
           deadline={task.deadline}
           completed={task.completed}

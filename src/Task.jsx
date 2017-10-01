@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Task.css';
 
-function Task(props) {
-  const { name, deadline, completed, onClick } = props;
+class Task extends Component {
+  constructor() {
+    super();
 
-  return (
-    <li className="Task">
-      <a
-        href="#"
-        className="Task__link"
-        onClick={onClick}
-      >
-        {name}
-      </a>
-      {deadline == null
-        ? ''
-        : deadline.toString()
-      }
-      {completed
-        ? 'Completed'
-        : 'Pending'
-      }
-    </li>
-  );
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.onClick(this.props.index);
+  }
+
+  render() {
+    const { name, deadline, completed } = this.props;
+
+    return (
+      <li className="Task">
+        <button
+          className="Task__button"
+          onClick={this.handleClick}
+        >
+          {name}
+        </button>
+        {deadline == null
+          ? ''
+          : deadline.toString()
+        }
+        {completed
+          ? 'Completed'
+          : 'Pending'
+        }
+      </li>
+    );
+  }
 }
 
 Task.propTypes = {
+  index: PropTypes.number,
   name: PropTypes.string,
   deadline: PropTypes.string,
   completed: PropTypes.bool,
@@ -33,6 +46,7 @@ Task.propTypes = {
 };
 
 Task.defaultProps = {
+  index: null,
   name: null,
   deadline: null,
   completed: false,

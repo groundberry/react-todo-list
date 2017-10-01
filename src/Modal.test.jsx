@@ -4,32 +4,29 @@ import Modal from './Modal';
 
 describe('<Modal />', () => {
   let task;
-  let onSaveSpy;
+  let onChangeSpy;
+  let onSubmitSpy;
+  let onCloseSpy;
   let wrapper;
 
   beforeEach(() => {
     task = {
-      name: '',
+      name: 'Foo',
       deadline: '',
-      completed: false,
+      completed: true,
     };
-    onSaveSpy = jest.fn();
+    onChangeSpy = jest.fn();
+    onSubmitSpy = jest.fn();
+    onCloseSpy = jest.fn();
     wrapper = shallow(<Modal
       task={task}
-      onSave={onSaveSpy}
+      onChange={onChangeSpy}
+      onSubmit={onSubmitSpy}
+      onClose={onCloseSpy}
     />);
   });
 
   it('renders a modal when isModalVisible is true', () => {
     expect(wrapper.find('.Modal__body')).toHaveLength(1);
-  });
-
-  it('renders a save button', () => {
-    expect(wrapper.find('.Modal__save_button')).toHaveLength(1);
-  });
-
-  it('calls the onSave callback when the user clicks the Save button', () => {
-    wrapper.find('.Modal__save_button').simulate('click');
-    expect(onSaveSpy).toHaveBeenCalled();
   });
 });

@@ -35,6 +35,8 @@ class Form extends Component {
   }
 
   render() {
+    const { task } = this.props;
+
     return (
       <form>
         <label>
@@ -42,7 +44,7 @@ class Form extends Component {
           <input
             name="name"
             type="text"
-            value={this.props.task.name}
+            value={task.name}
             onChange={this.handleNameChange}
           />
         </label>
@@ -51,7 +53,7 @@ class Form extends Component {
           <input
             name="deadline"
             type="date"
-            value={this.props.task.deadline}
+            value={task.deadline}
             onChange={this.handleDeadlineChange}
           />
         </label>
@@ -60,7 +62,7 @@ class Form extends Component {
           <input
             name="completed"
             type="checkbox"
-            checked={this.props.task.completed}
+            checked={task.completed}
             onChange={this.handleCompletedChange}
           />
         </label>

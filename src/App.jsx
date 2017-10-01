@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { showModal, hideModal } from './actions';
 import Modal from './Modal';
 import Form from './Form';
 import Tasks from './Tasks';
@@ -8,47 +9,74 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      task: {
+      tasks: [],
+      editedTask: {
         name: '',
         deadline: '',
         completed: false,
       },
-      tasks: [],
+      selectedTaskIndex: null,
       isModalVisible: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.handleAddTask = this.handleAddTask.bind(this);
+    this.handleEditTask = this.handleEditTask.bind(this);
+    this.handleShowModal = this.handleShowModal.bind(this);
+    this.handleHideModal = this.handleHideModal.bind(this);
   }
 
   handleChange(changes) {
     this.setState(prevState => ({
-      task: {
-        ...prevState.task,
+      editedTask: {
+        ...prevState.editedTask,
         ...changes,
       },
     }));
   }
 
-  handleSubmit() {
-    this.setState(prevState => ({
-      task: {
-        name: '',
-        deadline: '',
-        completed: false,
-      },
-      tasks: prevState.tasks.concat(prevState.task),
-    }));
+  handleAddTask() {
+    this.setState((prevState) => {
+      const newTasks = prevState.tasks.concat(prevState.editedTask);
+      return {
+        tasks: newTasks,
+        editedTask: {
+          name: '',
+          deadline: '',
+          completed: false,
+        },
+      };
+    });
   }
 
-  toggleModal() {
-    this.setState(prevState => ({
-      isModalVisible: !prevState.isModalVisible,
-    }));
+  handleEditTask() {
+    this.setState((prevState) => {
+      const newTasks = [...prevState.tasks];
+      newTasks[prevState.selectedTaskIndex] = prevState.editedTask;
+      return {
+        tasks: newTasks, // TODO
+        editedTask: {
+          name: '',
+          deadline: '',
+          completed: false,
+        },
+        selectedTaskIndex: null,
+        isModalVisible: false,
+      };
+    });
+  }
+
+  handleShowModal(selectedTaskIndex) {
+    this.setState(showModal.bind(this, selectedTaskIndex));
+  }
+
+  handleHideModal() {
+    this.setState(hideModal.bind(this));
   }
 
   render() {
+    const { tasks, editedTask } = this.state;
+
     return (
       <div className="App">
         <header className="App__header">
@@ -56,19 +84,21 @@ class App extends Component {
         </header>
         {this.state.isModalVisible
           ? <Modal
-            task={this.state.task}
-            onClose={this.toggleModal}
+            task={editedTask}
+            onChange={this.handleChange}
+            onSubmit={this.handleEditTask}
+            onClose={this.handleHideModal}
           />
           : <Form
-            task={this.state.task}
+            task={editedTask}
             onChange={this.handleChange}
-            onSubmit={this.handleSubmit}
+            onSubmit={this.handleAddTask}
           />
         }
         {this.state.tasks.length !== 0
           ? <Tasks
-            tasks={this.state.tasks}
-            onClick={this.toggleModal}
+            tasks={tasks}
+            onClick={this.handleShowModal}
           />
           : ''
         }
