@@ -13,7 +13,8 @@ function Tasks(props) {
           name={task.name}
           deadline={task.deadline}
           completed={task.completed}
-          onClick={props.onClick}
+          onClickEdit={props.onClickEdit}
+          onClickDelete={props.onClickDelete}
         />
       ))}
     </ul>
@@ -28,7 +29,8 @@ Tasks.propTypes = {
     deadline: PropTypes.string,
     completed: PropTypes.bool,
   }).isRequired),
-  onClick: PropTypes.func.isRequired,
+  onClickEdit: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
 };
 
 Tasks.defaultProps = {

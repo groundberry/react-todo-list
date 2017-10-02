@@ -22,6 +22,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleEditTask = this.handleEditTask.bind(this);
+    this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.handleShowModal = this.handleShowModal.bind(this);
     this.handleHideModal = this.handleHideModal.bind(this);
   }
@@ -54,7 +55,7 @@ class App extends Component {
       const newTasks = [...prevState.tasks];
       newTasks[prevState.selectedTaskIndex] = prevState.editedTask;
       return {
-        tasks: newTasks, // TODO
+        tasks: newTasks,
         editedTask: {
           name: '',
           deadline: '',
@@ -62,6 +63,18 @@ class App extends Component {
         },
         selectedTaskIndex: null,
         isModalVisible: false,
+      };
+    });
+  }
+
+  handleDeleteTask(selectedTaskIndex) {
+    this.setState((prevState) => {
+      const newTasks = [...prevState.tasks];
+
+      newTasks.splice(selectedTaskIndex, 1);
+
+      return {
+        tasks: newTasks,
       };
     });
   }
@@ -98,7 +111,8 @@ class App extends Component {
         {this.state.tasks.length !== 0
           ? <Tasks
             tasks={tasks}
-            onClick={this.handleShowModal}
+            onClickEdit={this.handleShowModal}
+            onClickDelete={this.handleDeleteTask}
           />
           : ''
         }

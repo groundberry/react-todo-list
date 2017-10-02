@@ -6,11 +6,16 @@ class Task extends Component {
   constructor() {
     super();
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickEdit = this.handleClickEdit.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
   }
 
-  handleClick() {
-    this.props.onClick(this.props.index);
+  handleClickEdit() {
+    this.props.onClickEdit(this.props.index);
+  }
+
+  handleClickDelete() {
+    this.props.onClickDelete(this.props.index);
   }
 
   render() {
@@ -23,7 +28,7 @@ class Task extends Component {
         >
           <button
             className="Task__name_button"
-            onClick={this.handleClick}
+            onClick={this.handleClickEdit}
           >
             {name}
           </button>
@@ -44,6 +49,16 @@ class Task extends Component {
             : 'Pending'
           }
         </div>
+        <div
+          className="Task__delete"
+        >
+          <button
+            className="Task__delete_button"
+            onClick={this.handleClickDelete}
+          >
+            Delete
+          </button>
+        </div>
       </li>
     );
   }
@@ -54,7 +69,8 @@ Task.propTypes = {
   name: PropTypes.string,
   deadline: PropTypes.string,
   completed: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClickEdit: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
 };
 
 Task.defaultProps = {

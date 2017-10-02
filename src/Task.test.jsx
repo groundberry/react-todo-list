@@ -3,16 +3,19 @@ import { shallow } from 'enzyme';
 import Task from './Task';
 
 describe('<Task />', () => {
-  let onClickSpy;
+  let onClickEditSpy;
+  let onClickDeleteSpy;
   let wrapper;
 
   beforeEach(() => {
-    onClickSpy = jest.fn();
+    onClickEditSpy = jest.fn();
+    onClickDeleteSpy = jest.fn();
     wrapper = shallow(<Task
       name="Foo"
       deadline={new Date('2017-08-17').toString()}
       completed
-      onClick={onClickSpy}
+      onClickEdit={onClickEditSpy}
+      onClickDelete={onClickDeleteSpy}
     />);
   });
 
@@ -26,5 +29,9 @@ describe('<Task />', () => {
 
   it('shows if the task is completed', () => {
     expect(wrapper.text()).toContain('Completed');
+  });
+
+  it('shows a delete button', () => {
+    expect(wrapper.find('.Task__delete_button')).toHaveLength(1);
   });
 });
