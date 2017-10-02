@@ -30,12 +30,12 @@
 }
 
 .Task__deadline {
-  color: #d3d3d3;
+  color: #76ac26;
   display: inline-block;
   width: 25%;
 }
 
-.Task__deadline.is-due {
+.Task__deadline_due {
   color: #cc0000;
 }
 

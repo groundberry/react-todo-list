@@ -34,7 +34,7 @@ class Task extends Component {
           </button>
         </div>
         <div
-          className="Task__deadline"
+          className={new Date(deadline) <= new Date() ? 'Task__deadline Task__deadline_due' : 'Task__deadline'}
         >
           {deadline == null
             ? ''
