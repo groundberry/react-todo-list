@@ -2,6 +2,7 @@
   "name": "react-todo-list",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://groundberry.github.io/react-todo-list",
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -12,11 +13,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0"
+    "enzyme-adapter-react-16": "^1.0.0",
+    "gh-pages": "^1.0.0"
   }
 }
