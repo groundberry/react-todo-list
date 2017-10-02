@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { showModal, hideModal } from './actions';
+import {
+  showModal,
+  hideModal,
+  addTask,
+  editTask,
+  deleteTask,
+} from './actions';
 import Modal from './Modal';
 import Form from './Form';
 import Tasks from './Tasks';
@@ -36,47 +42,16 @@ class App extends Component {
     }));
   }
 
-  handleAddTask() {
-    this.setState((prevState) => {
-      const newTasks = prevState.tasks.concat(prevState.editedTask);
-      return {
-        tasks: newTasks,
-        editedTask: {
-          name: '',
-          deadline: '',
-          completed: false,
-        },
-      };
-    });
+  handleAddTask(editedTask) {
+    this.setState(addTask.bind(this, editedTask));
   }
 
-  handleEditTask() {
-    this.setState((prevState) => {
-      const newTasks = [...prevState.tasks];
-      newTasks[prevState.selectedTaskIndex] = prevState.editedTask;
-      return {
-        tasks: newTasks,
-        editedTask: {
-          name: '',
-          deadline: '',
-          completed: false,
-        },
-        selectedTaskIndex: null,
-        isModalVisible: false,
-      };
-    });
+  handleEditTask(selectedTaskIndex) {
+    this.setState(editTask.bind(this, selectedTaskIndex));
   }
 
   handleDeleteTask(selectedTaskIndex) {
-    this.setState((prevState) => {
-      const newTasks = [...prevState.tasks];
-
-      newTasks.splice(selectedTaskIndex, 1);
-
-      return {
-        tasks: newTasks,
-      };
-    });
+    this.setState(deleteTask.bind(this, selectedTaskIndex));
   }
 
   handleShowModal(selectedTaskIndex) {
