@@ -11,6 +11,9 @@ Create-react-app to manage tasks.
 - As a user, I can mark a task as completed.
 - As a user, when I see all the tasks in the overview, if today's date is past the task's deadline, highlight it.
 
+![Add task to list](public/img/add-task.png)
+![Edit task](public/img/edit-task.png)
+
 ## Running the app
 
 Clone this repo:
@@ -40,6 +43,7 @@ Run the tests:
 ```
 $ npm run test
 ```
+![Unit tests](public/img/unit-tests.png)
 
 ## Useful documentation
 
